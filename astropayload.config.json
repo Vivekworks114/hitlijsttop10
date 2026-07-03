@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "tenantSlug": "hitlijsttop10",
+  "githubRepo": "hitlijsttop10/hitlijsttop10",
+  "modules": ["blog"],
+  "enabledModules": ["blog"],
+  "blogContentPath": "src/content/blog",
+  "blogFileExtension": "mdx"
+}

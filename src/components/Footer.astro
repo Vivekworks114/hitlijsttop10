@@ -1,0 +1,21 @@
+---
+import navigation from '../data/navigation.json';
+
+const { footer } = navigation;
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <nav class="footer-nav" aria-label="Footer navigatie">
+      <ul>
+        {footer.map((item) => (
+          <li>
+            <a href={item.href}>{item.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <p class="copyright">&copy; {year} hitlijsttop10.nl</p>
+  </div>
+</footer>

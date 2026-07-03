@@ -1,0 +1,97 @@
+{
+  "header": [
+    {
+      "label": "Home",
+      "href": "/",
+      "children": []
+    },
+    {
+      "label": "Bekendheden",
+      "href": "/bekendheden",
+      "children": [
+        {
+          "label": "Susanne Schulting",
+          "href": "/vermogen-van-susanne-schulting",
+          "children": []
+        },
+        {
+          "label": "Maxime Meiland",
+          "href": "/vermogen-van-maxime-meiland",
+          "children": []
+        },
+        {
+          "label": "Peter Pannekoek",
+          "href": "/vermogen-van-peter-pannekoek",
+          "children": []
+        },
+        {
+          "label": "Wout Weghorst",
+          "href": "/vermogen-van-wout-weghorst",
+          "children": []
+        },
+        {
+          "label": "Johan Derksen",
+          "href": "/vermogen-van-johan-derksen",
+          "children": []
+        },
+        {
+          "label": "Virgil van Dijk",
+          "href": "/vermogen-van-virgil-van-dijk",
+          "children": []
+        },
+        {
+          "label": "Nick Schilder",
+          "href": "/vermogen-van-nick-schilder",
+          "children": []
+        },
+        {
+          "label": "Erik ten Hag",
+          "href": "/vermogen-van-erik-ten-hag",
+          "children": []
+        },
+        {
+          "label": "Peter Bosz",
+          "href": "/vermogen-van-peter-bosz",
+          "children": []
+        },
+        {
+          "label": "Won Yip",
+          "href": "/vermogen-van-won-yip",
+          "children": []
+        }
+      ]
+    },
+    {
+      "label": "Blog",
+      "href": "/blog",
+      "children": []
+    },
+    {
+      "label": "Over ons",
+      "href": "/over-ons",
+      "children": []
+    }
+  ],
+  "footer": [
+    {
+      "label": "Sitemap",
+      "href": "/sitemap"
+    },
+    {
+      "label": "Blog",
+      "href": "/blog"
+    },
+    {
+      "label": "Over ons",
+      "href": "/over-ons"
+    },
+    {
+      "label": "Contact",
+      "href": "/contact"
+    },
+    {
+      "label": "Bekendheden",
+      "href": "/bekendheden"
+    }
+  ]
+}

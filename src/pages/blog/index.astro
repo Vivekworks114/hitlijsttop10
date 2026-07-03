@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<BaseLayout title="Blog" description="Lees onze laatste blogs over populaire producten en trends.">
+  <article class="blog-listing">
+    <h1>Blog</h1>
+    <p>Kies het onderwerp waar jij meer over te weten wilt komen en krijg meer inzicht door de blogs te lezen.</p>
+    <ul class="blog-list">
+      {posts.map((post) => (
+        <li class="blog-list-item">
+          <h2><a href={`/${post.id}`}>{post.data.title}</a></h2>
+          <p class="blog-list-description">{post.data.description}</p>
+          <time datetime={post.data.pubDate.toISOString()}>
+            {post.data.pubDate.toLocaleDateString('nl-NL', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+          </time>
+        </li>
+      ))}
+    </ul>
+  </article>
+</BaseLayout>

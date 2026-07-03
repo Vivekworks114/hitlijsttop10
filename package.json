@@ -1,0 +1,25 @@
+{
+  "name": "hitlijsttop10",
+  "type": "module",
+  "engines": {
+    "node": ">=18.20.8"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "migrate": "node scripts/migrate-wordpress.mjs",
+    "postinstall": "node scripts/postinstall.mjs"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.3.0",
+    "astro": "^5.7.10"
+  },
+  "devDependencies": {
+    "fast-xml-parser": "^4.5.1",
+    "linkedom": "^0.18.12",
+    "typescript": "^5.7.3",
+    "wrangler": "^3.114.1"
+  }
+}

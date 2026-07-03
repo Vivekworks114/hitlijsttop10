@@ -1,0 +1,42 @@
+---
+import navigation from '../data/navigation.json';
+
+const { header } = navigation;
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="logo">
+      <img src="/uploads/2023/03/Hitlijsttop10.nl_.svg" alt="hitlijsttop10.nl" width="180" height="28" />
+    </a>
+    <nav class="main-nav" aria-label="Hoofdnavigatie">
+      <ul>
+        {
+          header.map((item) => (
+            <li class:list={[{ 'has-children': item.children?.length }]}>
+              <a href={item.href}>{item.label}</a>
+              {item.children && item.children.length > 0 && (
+                <ul class="submenu">
+                  {item.children.map((child) => (
+                    <li>
+                      <a href={child.href}>{child.label}</a>
+                      {child.children && child.children.length > 0 && (
+                        <ul class="submenu">
+                          {child.children.map((grandchild) => (
+                            <li>
+                              <a href={grandchild.href}>{grandchild.label}</a>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>

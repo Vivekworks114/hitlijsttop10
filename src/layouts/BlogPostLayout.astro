@@ -1,0 +1,51 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  entry: CollectionEntry<'blog'>;
+}
+
+const { entry } = Astro.props;
+const { title, description, pubDate, updatedDate, author, categories, tags, featuredImage } =
+  entry.data;
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="blog-post">
+    <header class="blog-post-header">
+      <h1>{title}</h1>
+      <div class="blog-post-meta">
+        <time datetime={pubDate.toISOString()}>
+          {pubDate.toLocaleDateString('nl-NL', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </time>
+        {author && <span class="author">door {author}</span>}
+        {updatedDate && (
+          <span class="updated">
+            (bijgewerkt: {updatedDate.toLocaleDateString('nl-NL')})
+          </span>
+        )}
+      </div>
+      {categories && categories.length > 0 && (
+        <div class="blog-post-categories">
+          {categories.map((cat) => (
+            <span class="category-tag">{cat}</span>
+          ))}
+        </div>
+      )}
+      {featuredImage && (
+        <img src={featuredImage} alt={title} class="featured-image" />
+      )}
+    </header>
+    <div class="blog-post-content">
+      <slot />
+    </div>
+    {tags && tags.length > 0 && (
+      <footer class="blog-post-tags">
+        {tags.map((tag) => (
+          <span class="tag">{tag}</span>
+        ))}
+      </footer>
+    )}
+  </article>
+</BaseLayout>
