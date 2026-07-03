@@ -1,0 +1,80 @@
+---
+import Favicon from '../components/Favicon.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  modifiedTime?: string;
+  ogImage?: string;
+  bodyClass?: string;
+}
+
+const {
+  title,
+  description,
+  modifiedTime = '',
+  ogImage = '/uploads/elementor/thumbs/skynews-rowan-atkinson-qmhzcz8cq3dd17iwmb1uqfywm53lyt9o7wle9mjfus.jpg',
+  bodyClass = 'home wp-singular page-template page-template-elementor_header_footer page page-id-27 wp-embed-responsive wp-theme-hello-elementor hello-elementor-default elementor-default elementor-template-full-width elementor-kit-7 elementor-page elementor-page-27',
+} = Astro.props;
+
+const stylesheets = [
+  '/css/theme/reset.css',
+  '/css/theme/theme.css',
+  '/css/theme/header-footer.css',
+  '/css/elementor/frontend.min.css',
+  '/css/elementor/post-7.css',
+  '/css/elementor/widget-image.min.css',
+  '/css/elementor/widget-nav-menu.min.css',
+  '/css/elementor/widget-social-icons.min.css',
+  '/css/elementor/apple-webkit.min.css',
+  '/css/elementor/widget-divider.min.css',
+  '/css/elementor/widget-heading.min.css',
+  '/css/elementor/widget-button.min.css',
+  '/css/elementor/widget-posts.min.css',
+  '/css/elementor/elementor-icons.min.css',
+  '/css/elementor/widget-icon-list.min.css',
+  '/css/elementor/post-27.css',
+  '/css/elementor/post-17.css',
+  '/css/elementor/post-19.css',
+  '/css/fonts/dmsans.css',
+  '/css/fonts/lora.css',
+  '/css/fonts/inter.css',
+  '/css/fonts/sourcesanspro.css',
+  '/css/fonts/montserrat.css',
+  '/css/elementor/fontawesome.min.css',
+  '/css/elementor/solid.min.css',
+  '/css/elementor/brands.min.css',
+  '/css/site-nav-fixes.css',
+  '/css/content-page-enhancements.css',
+  '/css/site-layout.css',
+];
+---
+
+<!doctype html>
+<html lang="nl-NL">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href="https://hitlijsttop10.nl/" />
+    <meta property="og:locale" content="nl_NL" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content="https://hitlijsttop10.nl/" />
+    <meta property="og:site_name" content="hitlijsttop10.nl" />
+    {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+    <meta property="og:image" content={`https://hitlijsttop10.nl${ogImage}`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <Favicon />
+    {stylesheets.map((href) => <link rel="stylesheet" href={href} />)}
+  </head>
+  <body class={bodyClass}>
+    <a class="skip-link screen-reader-text" href="#content">Ga naar de inhoud</a>
+    <slot />
+    <script src="/js/homepage.js" defer></script>
+    <script src="/js/fix-images.js" defer></script>
+  </body>
+</html>

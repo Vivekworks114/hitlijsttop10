@@ -1,0 +1,103 @@
+/* Nav dropdown enhancements for static Astro build (replaces Elementor SmartMenus JS) */
+
+.elementor-location-header .elementor-element-6e8407d2 .elementor-widget-container {
+  overflow: visible;
+}
+
+.elementor-location-header .elementor-element-1ca56c34 {
+  overflow: visible;
+}
+
+.elementor-nav-menu .menu-item-has-children > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+}
+
+.elementor-nav-menu--layout-horizontal .menu-item-has-children > a {
+  justify-content: center;
+}
+
+.elementor-nav-menu .sub-arrow {
+  align-items: center;
+  display: inline-flex;
+  flex-shrink: 0;
+  line-height: 1;
+  margin-block: -10px;
+  padding: 10px 0 10px 2px;
+  pointer-events: none;
+}
+
+.elementor-nav-menu .sub-arrow i {
+  font-size: 0.85em;
+  line-height: 1;
+  pointer-events: none;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+@media (min-width: 1025px) {
+  .elementor-nav-menu--main .menu-item-has-children {
+    position: relative;
+  }
+
+  .elementor-nav-menu--main .menu-item-has-children > .sub-menu {
+    top: 100%;
+    left: 0;
+    z-index: 9999;
+    min-width: 220px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  .elementor-nav-menu--main .menu-item-has-children > a .sub-arrow i {
+    color: var(--e-global-color-accent, #949494);
+  }
+
+  .elementor-nav-menu--main .menu-item-has-children:hover > a .sub-arrow i,
+  .elementor-nav-menu--main .menu-item-has-children > a.highlighted .sub-arrow i,
+  .elementor-nav-menu--main .menu-item-has-children > a:focus .sub-arrow i {
+    color: var(--e-global-color-primary, #121212);
+  }
+
+  .elementor-nav-menu--main .menu-item-has-children:hover > a .sub-arrow i,
+  .elementor-nav-menu--main .menu-item-has-children > a.highlighted .sub-arrow i {
+    transform: rotate(180deg);
+  }
+}
+
+@media (max-width: 1024px) {
+  .elementor-nav-menu--dropdown .menu-item-has-children > a {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .elementor-nav-menu--dropdown .menu-item-has-children > a .sub-arrow {
+    margin-left: auto;
+    padding-inline-end: 0;
+    pointer-events: auto;
+    cursor: pointer;
+  }
+
+  .elementor-nav-menu--dropdown .menu-item-has-children > a .sub-arrow i {
+    color: var(--e-global-color-accent, #949494);
+    transform: rotate(-90deg);
+  }
+
+  .elementor-nav-menu--dropdown .menu-item-has-children.elementor-sub-item-open > a .sub-arrow i {
+    transform: rotate(0deg);
+    color: var(--e-global-color-primary, #121212);
+  }
+
+  .elementor-nav-menu--dropdown .menu-item-has-children > .sub-menu {
+    position: static;
+    width: 100%;
+    box-shadow: none;
+  }
+
+  .elementor-nav-menu--dropdown .elementor-sub-item-open > .sub-menu {
+    display: block;
+  }
+
+  .elementor-nav-menu--dropdown .sub-menu .elementor-sub-item {
+    padding-left: 0.75em;
+  }
+}

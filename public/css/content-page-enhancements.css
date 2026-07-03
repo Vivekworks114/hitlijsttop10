@@ -1,0 +1,720 @@
+/**
+ * Enhanced styling for bekendheden directory, vermogen pages, and shared content areas.
+ * Uses hitlijsttop10 Elementor kit colors: primary #121212, secondary #936D43.
+ * Horizontal spacing is handled in site-layout.css.
+ */
+
+/* ── Images ── */
+.elementor-widget-theme-post-featured-image img,
+.elementor-widget-image img,
+.elementor-post__thumbnail img,
+.wp-content img,
+.blog-post-content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.elementor-post__thumbnail {
+  overflow: hidden;
+  border-radius: 8px;
+  background: #f3efe8;
+  position: relative;
+}
+
+/* Elementor uses padding-bottom aspect ratio without JS class on static build */
+.elementor-widget-posts .elementor-posts-container .elementor-post__thumbnail {
+  padding-bottom: 0 !important;
+  aspect-ratio: 16 / 10;
+  height: auto;
+}
+
+.elementor-widget-posts .elementor-posts-container .elementor-post__thumbnail img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100% !important;
+  max-height: none !important;
+  object-fit: cover;
+  display: block;
+}
+
+.elementor-widget-theme-post-featured-image img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(18, 18, 18, 0.08);
+}
+
+img[src^='data:image/svg'],
+img[src=''] {
+  min-height: 120px;
+  background: linear-gradient(135deg, #f3efe8 0%, #ebe4da 100%);
+}
+
+#breadcrumbs,
+.zbmp-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+  margin: 0 0 1.25rem;
+  padding: 0.65rem 1rem;
+  background: linear-gradient(135deg, #faf8f5 0%, #f3efe8 100%);
+  border: 1px solid #e8dfd3;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+#breadcrumbs a,
+.zbmp-breadcrumb a {
+  color: #936d43;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+#breadcrumbs a:hover,
+.zbmp-breadcrumb a:hover {
+  color: #121212;
+  text-decoration: underline;
+}
+
+.zbmp-breadcrumb li::after {
+  color: #b8a88a;
+  margin: 0 0.15rem;
+}
+
+.breadcrumb_last,
+.zbmp-breadcrumb li:last-child span {
+  color: #121212;
+  font-weight: 600;
+}
+
+/* ── Page titles ── */
+#content .elementor-widget-heading .elementor-heading-title {
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+#content h1.elementor-heading-title {
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  line-height: 1.2;
+  padding-bottom: 0.75rem;
+  border-bottom: 3px solid #936d43;
+  margin-bottom: 1.25rem;
+}
+
+#content h2.elementor-heading-title {
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  margin-top: 0.5rem;
+}
+
+/* ── Celebrity A–Z directory (bekendheden) ── */
+.zbmp-category-links {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem !important;
+  margin-top: 1.5rem;
+}
+
+.zbmp-category-links .alpha-group {
+  width: auto !important;
+  background: #fff;
+  border: 1px solid #ebe4da;
+  border-radius: 12px;
+  padding: 1rem 1.1rem 1.15rem;
+  box-shadow: 0 2px 12px rgba(18, 18, 18, 0.06);
+  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+
+.zbmp-category-links .alpha-group:hover {
+  border-color: #d4c4ad;
+  box-shadow: 0 8px 24px rgba(147, 109, 67, 0.12);
+  transform: translateY(-2px);
+}
+
+.zbmp-category-links .alpha-group h5 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.25rem;
+  height: 2.25rem;
+  margin: 0 0 0.85rem;
+  padding: 0 0.65rem;
+  background: linear-gradient(135deg, #936d43 0%, #7a5835 100%);
+  color: #fff;
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(147, 109, 67, 0.35);
+}
+
+.zbmp-category-links ul {
+  margin: 0;
+  padding: 0;
+}
+
+.zbmp-category-links ul li {
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid #f2ece4;
+}
+
+.zbmp-category-links ul li:last-child {
+  border-bottom: none;
+}
+
+.zbmp-category-links ul li a {
+  display: block;
+  padding: 0.45rem 0.35rem;
+  color: #121212 !important;
+  font-size: 0.925rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.2s ease, color 0.2s ease, padding-left 0.2s ease;
+}
+
+.zbmp-category-links ul li a:hover {
+  color: #936d43 !important;
+  background: #faf6f0;
+  padding-left: 0.65rem;
+}
+
+/* Flat related-celebrity list (vermogen pages) */
+.zbmp-category-links > ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+}
+
+.zbmp-category-links > ul li {
+  border: none;
+}
+
+.zbmp-category-links > ul li a {
+  display: inline-block;
+  padding: 0.45rem 0.9rem;
+  background: #fff;
+  border: 1px solid #e8dfd3;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  box-shadow: 0 1px 4px rgba(18, 18, 18, 0.05);
+}
+
+.zbmp-category-links > ul li a:hover {
+  background: #936d43;
+  color: #fff !important;
+  border-color: #936d43;
+  padding-left: 0.9rem;
+}
+
+/* ── Vermogen hero section ── */
+.elementor-237 .elementor-element-1f08aff,
+.elementor-237 .elementor-element-1546ca6 {
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+}
+
+.elementor-237 .elementor-widget-text-editor p {
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: #333;
+}
+
+.elementor-237 .elementor-widget-text-editor h2 {
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  padding-left: 0.85rem;
+  border-left: 4px solid #936d43;
+  color: #121212;
+}
+
+/* ── Table of contents ── */
+.elementor-widget-table-of-contents .elementor-toc__header {
+  background: linear-gradient(135deg, #936d43 0%, #7a5835 100%);
+  border-radius: 10px 10px 0 0;
+  padding: 0.85rem 1rem;
+}
+
+.elementor-widget-table-of-contents .elementor-toc__header-title {
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.elementor-widget-table-of-contents .elementor-toc__toggle-button {
+  color: #fff;
+}
+
+.elementor-widget-table-of-contents .elementor-toc__body {
+  background: #faf8f5;
+  border: 1px solid #e8dfd3;
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  padding: 0.75rem 1rem;
+}
+
+.elementor-toc__list-wrapper {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.elementor-toc__list-item {
+  margin: 0;
+  padding: 0;
+}
+
+.elementor-toc__empty {
+  color: #666;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.elementor-toc__list-item-text {
+  display: block;
+  color: #121212 !important;
+  font-size: 0.9rem;
+  padding: 0.35rem 0;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.elementor-toc__list-item-text:hover {
+  color: #936d43 !important;
+}
+
+#content h2[id],
+#content h3[id],
+#content h4[id],
+[data-elementor-type='wp-post'] h2[id],
+[data-elementor-type='wp-post'] h3[id],
+[data-elementor-type='wp-post'] h4[id] {
+  scroll-margin-top: 100px;
+}
+
+/* ── FAQ accordion ── */
+.elementor-widget-accordion .elementor-accordion-item {
+  margin-bottom: 0.65rem;
+  border: 1px solid #e8dfd3 !important;
+  border-radius: 10px !important;
+  overflow: hidden;
+  box-shadow: 0 1px 4px rgba(18, 18, 18, 0.04);
+}
+
+.elementor-widget-accordion .elementor-tab-title {
+  background: #faf8f5;
+  padding: 1rem 1.15rem !important;
+  transition: background 0.2s ease;
+}
+
+.elementor-widget-accordion .elementor-tab-title.elementor-active,
+.elementor-widget-accordion .elementor-tab-title:hover {
+  background: #f3efe8;
+}
+
+.elementor-widget-accordion .elementor-accordion-title {
+  color: #121212 !important;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.elementor-widget-accordion .elementor-accordion-icon-closed i,
+.elementor-widget-accordion .elementor-accordion-icon-opened i {
+  color: #936d43;
+}
+
+.elementor-widget-accordion .elementor-tab-content {
+  padding: 1rem 1.15rem 1.15rem !important;
+  background: #fff !important;
+  border-top: 1px solid #f0e8dc;
+  line-height: 1.7;
+  color: #121212 !important;
+}
+
+.elementor-widget-accordion .elementor-tab-content p,
+.elementor-widget-accordion .elementor-tab-content span,
+.elementor-widget-accordion .elementor-tab-content li {
+  color: #121212 !important;
+}
+
+/* post-237 sets white FAQ answer text for brown section; override on white panel */
+.elementor-237 .elementor-widget-accordion .elementor-tab-content,
+.elementor-237 .elementor-widget-accordion .elementor-tab-content p,
+.elementor-237 .elementor-widget-accordion .elementor-tab-content span {
+  color: #121212 !important;
+}
+
+/* ── Related celebrities heading ── */
+.elementor-237 p strong:first-child {
+  display: block;
+  font-size: 1.1rem;
+  color: #121212;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #936d43;
+}
+
+/* ── Bekendheden page intro area ── */
+.elementor-262 .elementor-element-e1f04e5 {
+  padding-top: 1.5rem;
+}
+
+.elementor-262 .elementor-element-2f21157 .elementor-heading-title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid #936d43;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Blog post card grid (homepage + blog archive) ── */
+.elementor-27 .elementor-element-5cc59a7 {
+  padding-bottom: 2rem;
+}
+
+.elementor-27 .elementor-element-6b6d634 .elementor-heading-title {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  text-align: center;
+  margin-bottom: 0.35rem;
+}
+
+.elementor-27 .elementor-element-b37baed .elementor-widget-container {
+  text-align: center;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.elementor-27 .elementor-element-1db5ee6::after,
+.elementor-177 .elementor-element-b48d36a::after {
+  display: none !important;
+}
+
+.elementor-27 .elementor-element-1db5ee6 .elementor-posts-container,
+.elementor-177 .elementor-element-b48d36a .elementor-posts-container {
+  align-items: stretch;
+  gap: 1.75rem;
+}
+
+.elementor-27 .elementor-element-1db5ee6 .elementor-post,
+.elementor-177 .elementor-element-b48d36a .elementor-post {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #fff;
+  border: 1px solid #ebe4da;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 14px rgba(18, 18, 18, 0.06);
+  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+
+.elementor-27 .elementor-element-1db5ee6 .elementor-post:hover,
+.elementor-177 .elementor-element-b48d36a .elementor-post:hover {
+  border-color: #d4c4ad;
+  box-shadow: 0 10px 28px rgba(147, 109, 67, 0.16);
+  transform: translateY(-4px);
+}
+
+.elementor-27 .elementor-element-1db5ee6 .elementor-posts-container .elementor-post__thumbnail,
+.elementor-177 .elementor-element-b48d36a .elementor-posts-container .elementor-post__thumbnail {
+  padding-bottom: 0 !important;
+  position: relative;
+  aspect-ratio: 16 / 10;
+  height: auto;
+  border-radius: 0;
+  background: #f3efe8;
+}
+
+.elementor-27 .elementor-element-1db5ee6 .elementor-post__thumbnail img,
+.elementor-177 .elementor-element-b48d36a .elementor-post__thumbnail img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100% !important;
+  max-height: none !important;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.elementor-27 .elementor-element-1db5ee6 .elementor-post:hover .elementor-post__thumbnail img,
+.elementor-177 .elementor-element-b48d36a .elementor-post:hover .elementor-post__thumbnail img {
+  transform: scale(1.04);
+}
+
+.elementor-27 .elementor-element-1db5ee6.elementor-posts--thumbnail-top .elementor-post__thumbnail__link,
+.elementor-177 .elementor-element-b48d36a.elementor-posts--thumbnail-top .elementor-post__thumbnail__link {
+  margin-bottom: 0 !important;
+  display: block;
+  overflow: hidden;
+}
+
+.elementor-27 .elementor-element-1db5ee6 .elementor-post__text,
+.elementor-177 .elementor-element-b48d36a .elementor-post__text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 1.1rem 1.25rem 1.35rem;
+}
+
+.elementor-27 .elementor-element-1db5ee6 .elementor-post__title,
+.elementor-177 .elementor-element-b48d36a .elementor-post__title {
+  margin: 0 0 0.55rem;
+  line-height: 1.35;
+}
+
+.elementor-27 .elementor-element-1db5ee6 .elementor-post__title a,
+.elementor-177 .elementor-element-b48d36a .elementor-post__title a {
+  color: #121212 !important;
+  font-size: clamp(1rem, 1.6vw, 1.15rem) !important;
+  font-weight: 700 !important;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.elementor-27 .elementor-element-1db5ee6 .elementor-post__title a:hover,
+.elementor-177 .elementor-element-b48d36a .elementor-post__title a:hover {
+  color: #936d43 !important;
+}
+
+.elementor-27 .elementor-element-1db5ee6 .elementor-post__meta-data,
+.elementor-177 .elementor-element-b48d36a .elementor-post__meta-data {
+  color: #936d43;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
+  margin-bottom: 0.65rem;
+}
+
+.elementor-177 .elementor-element-b48d36a .elementor-post__meta-data span + span::before {
+  content: ' · ';
+  color: #b8a88a;
+}
+
+.elementor-27 .elementor-element-1db5ee6 .elementor-post__excerpt,
+.elementor-177 .elementor-element-b48d36a .elementor-post__excerpt {
+  margin-bottom: 1rem;
+}
+
+.elementor-27 .elementor-element-1db5ee6 .elementor-post__excerpt p,
+.elementor-177 .elementor-element-b48d36a .elementor-post__excerpt p {
+  color: #555;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.elementor-27 .elementor-element-1db5ee6 .elementor-post__read-more,
+.elementor-177 .elementor-element-b48d36a .elementor-post__read-more {
+  margin-top: auto;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.55rem 1rem;
+  border: 1px solid #936d43;
+  border-radius: 999px;
+  background: transparent;
+  color: #936d43 !important;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  text-decoration: none;
+  text-transform: none;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.elementor-27 .elementor-element-1db5ee6 .elementor-post__read-more:hover,
+.elementor-177 .elementor-element-b48d36a .elementor-post__read-more:hover {
+  background: #936d43;
+  border-color: #936d43;
+  color: #fff !important;
+}
+
+/* Posts without a featured image get a matching placeholder */
+.elementor-27 .elementor-element-1db5ee6 .elementor-post:not(:has(.elementor-post__thumbnail__link))::before,
+.elementor-177 .elementor-element-b48d36a .elementor-post:not(:has(.elementor-post__thumbnail__link))::before {
+  content: '';
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: linear-gradient(135deg, #936d43 0%, #6b5032 100%);
+  flex-shrink: 0;
+}
+
+/* ── Blog archive page layout ── */
+.elementor-177 .elementor-element.elementor-element-da30847 .elementor-element-4bf725fe .elementor-heading-title {
+  font-size: clamp(1.35rem, 2.5vw, 1.65rem);
+  margin-bottom: 0.75rem;
+  color: #fff !important;
+}
+
+.elementor-177 .elementor-element.elementor-element-68158edd .elementor-icon-list-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.elementor-177 .elementor-element.elementor-element-68158edd .elementor-icon-list-item {
+  padding: 0.35rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  transition: opacity 0.2s ease;
+}
+
+.elementor-177 .elementor-element.elementor-element-68158edd .elementor-icon-list-item:last-child {
+  border-bottom: none;
+}
+
+.elementor-177 .elementor-element.elementor-element-68158edd .elementor-icon-list-item:hover {
+  opacity: 0.85;
+}
+
+.elementor-177 .elementor-element.elementor-element-68158edd .elementor-icon-list-text,
+.elementor-177 .elementor-element.elementor-element-68158edd .elementor-icon-list-item > a {
+  color: #fff !important;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.elementor-177 .elementor-element.elementor-element-45b36c8 .elementor-heading-title {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  color: #fff !important;
+}
+
+.elementor-177 .elementor-element.elementor-element-34f1e677,
+.elementor-177 .elementor-element.elementor-element-34f1e677 p {
+  color: rgba(255, 255, 255, 0.92) !important;
+  line-height: 1.65;
+  font-size: 0.95rem;
+}
+
+.elementor-177 .elementor-element-b48d36a .elementor-pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #ebe4da;
+}
+
+.elementor-177 .elementor-element-b48d36a .elementor-pagination .page-numbers {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  height: 2.5rem;
+  padding: 0 0.75rem;
+  border: 1px solid #ebe4da;
+  border-radius: 8px;
+  background: #fff;
+  color: #121212;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.elementor-177 .elementor-element-b48d36a .elementor-pagination .page-numbers.current {
+  background: #936d43;
+  border-color: #936d43;
+  color: #fff;
+}
+
+.elementor-177 .elementor-element-b48d36a .elementor-pagination a.page-numbers:hover {
+  background: #faf8f5;
+  border-color: #936d43;
+  color: #936d43;
+}
+
+.elementor-177 .elementor-element-b48d36a .elementor-pagination .page-numbers.prev,
+.elementor-177 .elementor-element-b48d36a .elementor-pagination .page-numbers.next {
+  min-width: auto;
+  padding: 0 1rem;
+}
+
+/* ── Sitemap page lists ── */
+#content .wsp-pages-title,
+#content .wsp-posts-title,
+#content .wsp-category-title {
+  font-size: 1.35rem;
+  margin: 2rem 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #936d43;
+  color: #121212;
+}
+
+#content .wsp-pages-list,
+#content .wsp-posts-list {
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  columns: 2;
+  column-gap: 2rem;
+}
+
+#content .wsp-pages-list li,
+#content .wsp-posts-list li {
+  break-inside: avoid;
+  margin-bottom: 0.45rem;
+}
+
+#content .wsp-pages-list a,
+#content .wsp-posts-list a {
+  color: #936d43;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+#content .wsp-pages-list a:hover,
+#content .wsp-posts-list a:hover {
+  color: #121212;
+  text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+  #content .wsp-pages-list,
+  #content .wsp-posts-list {
+    columns: 1;
+  }
+}
+
+/* ── Responsive ── */
+@media (max-width: 767px) {
+  .zbmp-category-links {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 0.85rem !important;
+  }
+
+  .zbmp-category-links .alpha-group {
+    padding: 0.85rem;
+  }
+
+  .elementor-177 .elementor-element-b48d36a .elementor-post__text {
+    padding: 1rem;
+  }
+
+  .elementor-177 .elementor-element-da30847 .elementor-container {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .zbmp-category-links {
+    grid-template-columns: 1fr 1fr;
+  }
+}

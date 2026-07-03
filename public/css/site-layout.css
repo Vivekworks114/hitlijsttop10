@@ -1,0 +1,78 @@
+/**
+ * Site-wide horizontal rhythm: consistent left/right gutters and max content width.
+ */
+:root {
+  --site-max-width: 1200px;
+  --site-gutter: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+html {
+  overflow-x: hidden;
+}
+
+/* Let Elementor sections stay full-bleed; constrain inner containers instead. */
+#content {
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 0 0 3rem;
+}
+
+.elementor-location-header .elementor-section.elementor-section-boxed > .elementor-container,
+.elementor-location-footer .elementor-section.elementor-section-boxed > .elementor-container,
+#content.elementor > .elementor-section.elementor-section-boxed > .elementor-container {
+  width: 100%;
+  max-width: var(--site-max-width);
+  margin-inline: auto;
+  padding-inline: var(--site-gutter);
+  box-sizing: border-box;
+}
+
+/* Nested rows use the full width of their parent column. */
+#content .elementor-inner-section > .elementor-container {
+  max-width: 100%;
+  padding-inline: 0;
+}
+
+/* Homepage hero: keep columns balanced inside the centered container. */
+.elementor-27 .elementor-element-da30847 > .elementor-container {
+  max-width: var(--site-max-width);
+}
+
+.elementor-27 .elementor-element-7dbcb242 > .elementor-element-populated {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  --e-column-margin-left: 0px !important;
+  --e-column-margin-right: 0px !important;
+}
+
+/* BaseLayout pages (blog listing, contact, etc.) */
+.container,
+.page-content,
+.blog-post,
+.blog-listing {
+  padding-inline: var(--site-gutter);
+}
+
+@media (max-width: 767px) {
+  :root {
+    --site-gutter: 1rem;
+  }
+
+  .elementor-27 .elementor-element-3bcf5a0a > .elementor-element-populated,
+  .elementor-27 .elementor-element-7dbcb242 > .elementor-element-populated {
+    padding-inline: 1rem !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .elementor-27 .elementor-element-7dbcb242 > .elementor-element-populated {
+    padding: 4rem 1.25rem 6rem !important;
+  }
+}
+
+@media (min-width: 1025px) {
+  .elementor-27 .elementor-element-7dbcb242 > .elementor-element-populated {
+    padding: 100px 1.5rem 150px 2rem !important;
+  }
+}

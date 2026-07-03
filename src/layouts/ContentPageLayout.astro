@@ -1,0 +1,99 @@
+---
+import Favicon from '../components/Favicon.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical: string;
+  ogImage?: string;
+  bodyClass: string;
+  modifiedTime?: string;
+  publishedTime?: string;
+  postCss?: string[];
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage = '',
+  bodyClass,
+  modifiedTime = '',
+  publishedTime = '',
+  postCss = [],
+} = Astro.props;
+
+const baseStylesheets = [
+  '/css/theme/reset.css',
+  '/css/theme/theme.css',
+  '/css/theme/header-footer.css',
+  '/css/elementor/frontend.min.css',
+  '/css/elementor/post-7.css',
+  '/css/elementor/widget-image.min.css',
+  '/css/elementor/widget-nav-menu.min.css',
+  '/css/elementor/widget-social-icons.min.css',
+  '/css/elementor/apple-webkit.min.css',
+  '/css/elementor/widget-divider.min.css',
+  '/css/elementor/widget-heading.min.css',
+  '/css/elementor/widget-button.min.css',
+  '/css/elementor/widget-posts.min.css',
+  '/css/elementor/elementor-icons.min.css',
+  '/css/elementor/widget-icon-list.min.css',
+  '/css/elementor/widget-text-editor.min.css',
+  '/css/elementor/widget-breadcrumbs.min.css',
+  '/css/elementor/widget-post-info.min.css',
+  '/css/elementor/widget-accordion.min.css',
+  '/css/elementor/widget-spacer.min.css',
+  '/css/elementor/widget-table-of-contents.min.css',
+  '/css/elementor/post-17.css',
+  '/css/elementor/post-19.css',
+  '/css/fonts/dmsans.css',
+  '/css/fonts/lora.css',
+  '/css/fonts/inter.css',
+  '/css/fonts/sourcesanspro.css',
+  '/css/fonts/montserrat.css',
+  '/css/elementor/fontawesome.min.css',
+  '/css/elementor/regular.min.css',
+  '/css/elementor/solid.min.css',
+  '/css/elementor/brands.min.css',
+  '/css/site-nav-fixes.css',
+  '/css/content-page-enhancements.css',
+  '/css/site-layout.css',
+];
+
+const pageStylesheets = postCss.map((file) => `/css/elementor/${file}`);
+const stylesheets = [...baseStylesheets, ...pageStylesheets.filter((href) => !baseStylesheets.includes(href))];
+
+const canonicalUrl = canonical.startsWith('http') ? canonical : `https://hitlijsttop10.nl${canonical}`;
+---
+
+<!doctype html>
+<html lang="nl-NL">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:locale" content="nl_NL" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="hitlijsttop10.nl" />
+    {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+    {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+    {ogImage && <meta property="og:image" content={`https://hitlijsttop10.nl${ogImage}`} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <Favicon />
+    {stylesheets.map((href) => <link rel="stylesheet" href={href} />)}
+  </head>
+  <body class={bodyClass}>
+    <a class="skip-link screen-reader-text" href="#content">Ga naar de inhoud</a>
+    <slot />
+    <script src="/js/homepage.js" defer></script>
+    <script src="/js/content-page.js" defer></script>
+    <script src="/js/fix-images.js" defer></script>
+  </body>
+</html>

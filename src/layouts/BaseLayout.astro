@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Favicon from '../components/Favicon.astro';
 
 interface Props {
   title: string;
@@ -17,8 +18,10 @@ const { title, description = 'hitlijsttop10.nl' } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <link rel="icon" type="image/png" href="/uploads/2023/03/cropped-favicon-32x32.png" />
+    <Favicon />
     <title>{title} | hitlijsttop10.nl</title>
+    <link rel="stylesheet" href="/css/content-page-enhancements.css" />
+    <link rel="stylesheet" href="/css/site-layout.css" />
   </head>
   <body>
     <Header />
@@ -26,5 +29,6 @@ const { title, description = 'hitlijsttop10.nl' } = Astro.props;
       <slot />
     </main>
     <Footer />
+    <script src="/js/fix-images.js" defer></script>
   </body>
 </html>

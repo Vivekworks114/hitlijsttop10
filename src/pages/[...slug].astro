@@ -1,20 +1,80 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BlogPostLayout from '../layouts/BlogPostLayout.astro';
+import ContentPageLayout from '../layouts/ContentPageLayout.astro';
+import headerHtml from '../data/homepage/header.html?raw';
+import footerHtml from '../data/homepage/footer.html?raw';
+import contentManifest from '../data/content-pages/manifest.json';
 
-export async function getStaticPaths() {
-  const blogEntries = await getCollection('blog');
+const contentHtmlModules = import.meta.glob('../data/content-pages/**/*.html', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+}) as Record<string, string>;
 
-  return blogEntries.map((entry) => ({
-    params: { slug: entry.id },
-    props: { entry },
-  }));
+const contentHtmlMap: Record<string, string> = {};
+for (const [filePath, html] of Object.entries(contentHtmlModules)) {
+  const match = filePath.match(/content-pages\/(.+)\.html$/);
+  if (match) {
+    contentHtmlMap[match[1]] = html;
+  }
 }
 
-const { entry } = Astro.props;
-const { Content } = await render(entry);
+export async function getStaticPaths() {
+  const contentSlugs = Object.keys(contentManifest);
+  const excludedSlugs = new Set(contentSlugs);
+
+  const blogEntries = await getCollection('blog');
+  const blogPaths = blogEntries
+    .filter((entry) => !excludedSlugs.has(entry.id))
+    .map((entry) => ({
+      params: { slug: entry.id },
+      props: { type: 'blog' as const, entry },
+    }));
+
+  const contentPaths = contentSlugs.map((slug) => ({
+    params: { slug },
+    props: { type: 'content' as const, slug },
+  }));
+
+  return [...contentPaths, ...blogPaths];
+}
+
+const props = Astro.props;
+
+let Content: Awaited<ReturnType<typeof render>>['Content'] | null = null;
+if (props.type === 'blog') {
+  ({ Content } = await render(props.entry));
+}
+
+type ManifestEntry = (typeof contentManifest)[keyof typeof contentManifest];
+const contentEntry =
+  props.type === 'content'
+    ? (contentManifest[props.slug as keyof typeof contentManifest] as ManifestEntry)
+    : null;
 ---
 
-<BlogPostLayout entry={entry}>
-  <Content />
-</BlogPostLayout>
+{
+  props.type === 'content' && contentEntry ? (
+    <ContentPageLayout
+      title={contentEntry.title}
+      description={contentEntry.description}
+      canonical={contentEntry.canonical}
+      ogImage={contentEntry.ogImage}
+      bodyClass={contentEntry.bodyClass}
+      modifiedTime={contentEntry.modifiedTime}
+      publishedTime={contentEntry.publishedTime}
+      postCss={contentEntry.postCss}
+    >
+      <Fragment set:html={headerHtml} />
+      <Fragment set:html={contentHtmlMap[props.slug]} />
+      <Fragment set:html={footerHtml} />
+    </ContentPageLayout>
+  ) : (
+    Content && (
+      <BlogPostLayout entry={props.entry}>
+        <Content />
+      </BlogPostLayout>
+    )
+  )
+}
