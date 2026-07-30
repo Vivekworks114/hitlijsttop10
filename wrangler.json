@@ -1,5 +1,6 @@
 {
   "name": "hitlijsttop10",
+  "account_id": "aa20277e66394b81d65252fd5708e2c0",
   "compatibility_date": "2025-01-01",
   "assets": {
     "directory": "./dist"

@@ -23,3 +23,6 @@ pnpm-debug.log*
 
 # WordPress export (large, not needed in repo)
 *.WordPress.*.xml
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat

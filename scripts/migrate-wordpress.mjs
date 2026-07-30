@@ -94,9 +94,73 @@ function sanitizeHtml(html) {
   return body.trim();
 }
 
+const VOID_TAGS = new Set([
+  'area',
+  'base',
+  'br',
+  'col',
+  'embed',
+  'hr',
+  'img',
+  'input',
+  'link',
+  'meta',
+  'param',
+  'source',
+  'track',
+  'wbr',
+]);
+
+function escapeMdxText(text) {
+  return text
+    .replace(/\r\n|\r|\n/g, ' ')
+    .replace(/\s+/g, ' ')
+    .replace(/\{/g, '&#123;')
+    .replace(/\}/g, '&#125;');
+}
+
+function serializeHtmlForMdx(node) {
+  if (node.nodeType === 3) return escapeMdxText(node.textContent ?? '');
+  if (node.nodeType === 8) return '';
+  if (node.nodeType !== 1) return '';
+
+  const tag = node.tagName.toLowerCase();
+  let attrs = '';
+  for (const attr of node.attributes || []) {
+    const value = attr.value
+      .replace(/&/g, '&amp;')
+      .replace(/"/g, '&quot;')
+      .replace(/\{/g, '&#123;')
+      .replace(/\}/g, '&#125;');
+    attrs += ` ${attr.name}="${value}"`;
+  }
+
+  if (VOID_TAGS.has(tag)) return `<${tag}${attrs} />`;
+
+  let inner = '';
+  for (const child of node.childNodes) {
+    inner += serializeHtmlForMdx(child);
+  }
+  // Keep elements single-line so MDX JSX parsing stays happy.
+  inner = inner.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
+  return `<${tag}${attrs}>${inner}</${tag}>`;
+}
+
 function htmlToMdxBody(html) {
   const body = sanitizeHtml(html);
-  return `import WpContent from '../../components/WpContent.astro';\n\n<WpContent html={${JSON.stringify(body)}} />`;
+  const { document } = parseHTML(`<div id="mdx-root">${body}</div>`);
+  const root = document.getElementById('mdx-root');
+  const parts = [];
+  for (const child of root.childNodes) {
+    if (child.nodeType === 3) {
+      const text = escapeMdxText(child.textContent ?? '').trim();
+      if (text) parts.push(`<p>${text}</p>`);
+      continue;
+    }
+    const serialized = serializeHtmlForMdx(child);
+    if (serialized) parts.push(serialized);
+  }
+  return `<div class="wp-content">\n${parts.join('\n')}\n</div>`;
 }
 
 function cleanShortcodes(str) {
